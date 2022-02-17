@@ -1,8 +1,11 @@
 const express = require('express');
+var cors = require('cors')
 
 const pistaRoute = require('./routes/pistaRoute');
 
 const app = express();
+
+app.use(cors()); // Allows browser to use api
 
 app.use(express.urlencoded({
   extended: false,

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/png" href="resources/img/corelogo.png">
+
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,8 +19,15 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <title>Hello, world!</title>
+    <title>QR hunt</title>
     <style>
+      @font-face {
+        font-family: contb;
+        src: url(resources/fonts/contb.ttf);
+      }
+      *{
+        font-family: contb;
+      }
       body {
         background-image: url("resources/img/phonefull.png");
         /*background-repeat: no-repeat;
@@ -37,11 +46,24 @@
       <div style="height: 50%;"></div>
 
     <div class="cotainer-fluid">
-        <p class="display-1 text-light text-center">QR número: 23</p>
+        <p class="display-1 text-light text-center">QR número</p>
+        <p class="display-1 text-light text-center" id="num">##</p>
 
-        <p class="display-2 text-light text-center m-3 py-5">La palabra clave es: Ardilla magica</p>
-
+        <p class="display-2 text-light text-center m-3 pt-5">La palabra clave es:</p> 
+        <p class="display-2 text-light text-center" id="secret">-------</p>
     </div>
+
+    <script>
+      function changeDivs(fichero) {
+        document.getElementById('num').innerHTML = fichero.qr;
+        document.getElementById('secret').innerHTML = fichero.secret;
+      }
+
+      fetch('http://localhost:3000/620e7bd96df94205d152ba4c')
+      .then(response => response.json())
+      .then(json => changeDivs(json));
+
+    </script>
 
   </body>
 </html>
