@@ -54,12 +54,21 @@
     </div>
 
     <script>
+      const queryString = window.location.search;
+
+      const urlParams = new URLSearchParams(queryString);
+
+      const id = urlParams.get('hint');
+
+      console.log(id);
+
+
       function changeDivs(fichero) {
         document.getElementById('num').innerHTML = fichero.qr;
         document.getElementById('secret').innerHTML = fichero.secret;
       }
 
-      fetch('http://localhost:3000/620e7bd96df94205d152ba4c')
+      fetch('http://localhost:3000/'+id)
       .then(response => response.json())
       .then(json => changeDivs(json));
 
